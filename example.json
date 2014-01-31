@@ -1,0 +1,17 @@
+{
+    "_id":"a-25",
+    "_parentId":"co-15",
+    "_type":"article",
+    "_classes":"",
+    "title":"An article with a blockslider",
+    "body":"Some components have more advanced features.",
+    "_blockSlider":{
+        "_arrows": {
+            "_isActive": true
+        },
+        "_tabs": {
+            "_isActive": true,
+            "_useBlockTitle": false
+        }
+    }
+}
