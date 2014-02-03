@@ -12,6 +12,7 @@
         "_tabs": {
             "_isActive": true,
             "_useBlockTitle": false
-        }
+        },
+        "_initial": 2
     }
 }

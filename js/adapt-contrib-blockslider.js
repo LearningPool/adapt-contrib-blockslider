@@ -22,16 +22,23 @@ define(function(require) {
 
       initialize: function() {
         this.setupBlockSlider();
-        this.render();
-        this.checkDeviceLayout();
         
+        this.checkDeviceLayout();
+        this.render();
         _.defer(_.bind(function() {
-           this.setStage(this.model.get('_stage') || 0);
+          this.setInitialSlide();
         }, this));
         
         this.listenTo(Adapt, 'remove', this.remove, this);
-        this.listenTo(Adapt, 'device:resize', this.calculateWidths, this);
+        this.listenTo(Adapt, 'device:resize', this.calculateDimensions, this);
         this.listenTo(Adapt, 'device:changed', this.checkDeviceLayout, this);
+      },
+
+      setInitialSlide: function() {
+        var initialSlide = this.model.get('_blockSlider')._initial ? this.model.get('_blockSlider')._initial-1 : 0;
+        var movementSize = this.$('.blockslider-container').width();
+        this.$('.blockslider').css({'margin-left': - (movementSize * initialSlide)});
+        this.setStage(initialSlide);
       },
 
       render: function () {
@@ -67,15 +74,24 @@ define(function(require) {
       },
 
       setupBlockSlider: function() {
-        var slideCount = this.model.getChildren().length;
-        this.model.set('_blocks', this.model.getChildren().models);
-        this.model.set('_blockCount', slideCount);
+        var availableBlocks = _.filter(this.model.getChildren().models, function(block) {
+          return block.get('_isAvailable');
+        });
+
+        _.each(availableBlocks, function(availableBlock) {
+          // Set the block no not visible first - we'll update this via setStage
+          // as we progress through the blockSlider
+          availableBlock.set('_isVisible', false);
+        }, this);
+
+        this.model.set('_blocks', availableBlocks);
+        this.model.set('_blockCount', availableBlocks.length);
 
         this.wrapBlocks();
-        this.calculateWidths();
+        this.calculateDimensions();
       },
 
-      calculateWidths: function() {
+      calculateDimensions: function() {
         var slideWidth = this.$('.article-body').width();
         var slideCount = this.model.get('_blockCount');
         var stage = this.model.get('_stage');
@@ -84,6 +100,7 @@ define(function(require) {
         this.$('.blockslider').width(slideWidth * slideCount);
         this.$('.block').width(slideWidth);
         this.$('.blockslider').css('margin-left', margin);
+        this.setBlockHeight();
       },
 
       navigateClick: function (event) {
@@ -121,11 +138,19 @@ define(function(require) {
         
         this.$('.blockslider-tab').removeClass('active');
         this.$('.blockslider-tab').eq(stage).addClass('active');
-
-        // Update the height of the slide to match the contents
-        this.$('.blockslider-container').height(this.$('.block').eq(stage).height());
         
+        // Set the block to visible when we navigate to it
+        if (!this.model.get('_blocks')[stage].get('_isVisible')) {
+          this.model.get('_blocks')[stage].set('_isVisible', true);
+        }
+
+        this.setBlockHeight();
         this.evaluateNavigation();
+      },
+
+      setBlockHeight: function() {
+        // Update the height of the slide to match its contents
+        this.$('.blockslider-container').height(this.$('.block').eq(this.model.get('_stage')).height());
       },
 
       evaluateNavigation: function() {
@@ -154,7 +179,7 @@ define(function(require) {
 
     var availableArticles = pageView.model.getChildren();
     var sliderArticles = _.filter(availableArticles.models, function(article) {
-        return article.get('_blockSlider');
+      return article.get('_blockSlider') && article.get('_isAvailable');
     });
 
     if (sliderArticles.length > 0) {
