@@ -31,7 +31,7 @@ define(function(require) {
 
         this.listenTo(Adapt, 'remove', this.remove, this);
         this.listenTo(Adapt, 'device:changed', this.checkDeviceLayout, this);
-        this.listenTo(Adapt, 'device:resize', this.calculateDimensions, this);
+        this.listenTo(Adapt, 'device:resize', this.setBlockHeight, this);
 
         // Listen directly to window resize also - as blockslider is added
         // to the DOM post-render, resize events on blockslider-container
@@ -109,7 +109,6 @@ define(function(require) {
         this.$('.blockslider').width(slideWidth * slideCount);
         this.$('.block').width(slideWidth);
         this.$('.blockslider').css('margin-left', margin);
-        this.setBlockHeight();
       },
 
       navigateClick: function (event) {
