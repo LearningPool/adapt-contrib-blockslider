@@ -31,6 +31,7 @@ define(function(require) {
 
         this.listenTo(Adapt, 'remove', this.remove, this);
         this.listenTo(Adapt, 'device:changed', this.checkDeviceLayout, this);
+        this.listenTo(Adapt, 'device:resize', this.calculateDimensions, this);
         this.listenTo(Adapt, 'device:resize', this.setBlockHeight, this);
 
         // Listen directly to window resize also - as blockslider is added
@@ -61,7 +62,7 @@ define(function(require) {
       },
 
       checkDeviceLayout: function() {
-        if (this.model.get('_active') && Adapt.device.screenSize == 'small') {
+        if (Adapt.device.screenSize == 'small') {
           this.unwrapBlocks();
         } else if (!this.model.get('_active') && Adapt.device.screenSize != 'small') {
           this.wrapBlocks();
@@ -79,6 +80,14 @@ define(function(require) {
         this.$(".blockslider").unwrap();
         this.$(".block").unwrap();
         this.$('.blockslider-controls-container').addClass('blockslider-hidden');
+
+        var availableBlocks = _.filter(this.model.getChildren().models, function(block) {
+          return block.get('_isAvailable');
+        });
+        _.each(availableBlocks, function(availableBlock) {
+          availableBlock.set('_isVisible', availableBlock.get('_previousVisibleState'));
+        });
+
         this.model.set('_active', false);
       },
 
@@ -88,6 +97,8 @@ define(function(require) {
         });
 
         _.each(availableBlocks, function(availableBlock) {
+          // Keep a record of the state before blockSlider was initialised
+          availableBlock.set('_previousVisibleState', availableBlock.get('_isVisible'));
           // Set the block to not visible first - we'll update this via setStage
           // as we progress through the blockSlider
           availableBlock.set('_isVisible', false);
