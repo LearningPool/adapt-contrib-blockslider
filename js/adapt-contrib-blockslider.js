@@ -22,16 +22,25 @@ define(function(require) {
 
       initialize: function() {
         this.setupBlockSlider();
-        
         this.checkDeviceLayout();
         this.render();
+
         _.defer(_.bind(function() {
           this.setInitialSlide();
         }, this));
-        
+
         this.listenTo(Adapt, 'remove', this.remove, this);
-        this.listenTo(Adapt, 'device:resize', this.calculateDimensions, this);
         this.listenTo(Adapt, 'device:changed', this.checkDeviceLayout, this);
+        this.listenTo(Adapt, 'device:resize', this.calculateDimensions, this);
+
+        // Listen directly to window resize also - as blockslider is added
+        // to the DOM post-render, resize events on blockslider-container
+        // are fired too late, so we need to pick them up right away
+        $(window).on('resize', _.bind(
+          function() {
+            this.calculateDimensions();
+          }, this)
+        );
       },
 
       setInitialSlide: function() {
@@ -79,7 +88,7 @@ define(function(require) {
         });
 
         _.each(availableBlocks, function(availableBlock) {
-          // Set the block no not visible first - we'll update this via setStage
+          // Set the block to not visible first - we'll update this via setStage
           // as we progress through the blockSlider
           availableBlock.set('_isVisible', false);
         }, this);
@@ -175,17 +184,9 @@ define(function(require) {
     new BlockSliderView({model: blockSliderArticle});
   }
 
-  Adapt.on('pageView:ready', function(pageView) {
-
-    var availableArticles = pageView.model.getChildren();
-    var sliderArticles = _.filter(availableArticles.models, function(article) {
-      return article.get('_blockSlider') && article.get('_isAvailable');
-    });
-
-    if (sliderArticles.length > 0) {
-      _.each(sliderArticles, function(article) {
-        setupBlockSliderView(article);
-      }, this);
+  Adapt.on('articleView:postRender', function(article) {
+    if (article.model.get('_blockSlider')) {
+      setupBlockSliderView(article.model);
     }
   });
 
