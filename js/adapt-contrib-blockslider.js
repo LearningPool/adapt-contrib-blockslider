@@ -32,7 +32,7 @@ define(function(require) {
         this.listenTo(Adapt, 'remove', this.remove, this);
         this.listenTo(Adapt, 'device:changed', this.checkDeviceLayout, this);
         this.listenTo(Adapt, 'device:resize', this.calculateDimensions, this);
-        this.listenTo(Adapt, 'device:resize', this.setBlockHeight, this);
+        this.listenTo(Adapt, 'pageView:ready', this.setBlockHeight, this);
 
         // Listen directly to window resize also - as blockslider is added
         // to the DOM post-render, resize events on blockslider-container
@@ -76,14 +76,19 @@ define(function(require) {
         this.model.set('_active', true);
       },
 
+      getAvailableBlocks: function () {
+        return _.filter(this.model.getChildren().models, function(block) {
+          return block.get('_isAvailable');
+        });
+      },
+
       unwrapBlocks: function() {
         this.$(".blockslider").unwrap();
         this.$(".block").unwrap();
         this.$('.blockslider-controls-container').addClass('blockslider-hidden');
 
-        var availableBlocks = _.filter(this.model.getChildren().models, function(block) {
-          return block.get('_isAvailable');
-        });
+        var availableBlocks = this.getAvailableBlocks();
+
         _.each(availableBlocks, function(availableBlock) {
           availableBlock.set('_isVisible', availableBlock.get('_previousVisibleState'));
         });
@@ -92,9 +97,7 @@ define(function(require) {
       },
 
       setupBlockSlider: function() {
-        var availableBlocks = _.filter(this.model.getChildren().models, function(block) {
-          return block.get('_isAvailable');
-        });
+        var availableBlocks = this.getAvailableBlocks();
 
         _.each(availableBlocks, function(availableBlock) {
           // Keep a record of the state before blockSlider was initialised
@@ -163,13 +166,15 @@ define(function(require) {
           this.model.get('_blocks')[stage].set('_isVisible', true);
         }
 
-        this.setBlockHeight();
         this.evaluateNavigation();
       },
 
       setBlockHeight: function() {
-        // Update the height of the slide to match its contents
-        this.$('.blockslider-container').height(this.$('.block').eq(this.model.get('_stage')).height());
+        // If the user has specified a fixed hieght for slider, use that,
+        // otherwise css will dictate that it's auto
+        if (this.model.get('_blockSlider')._height) {
+          this.$('.blockslider-container').height(this.model.get('_blockSlider')._height);
+        }
       },
 
       evaluateNavigation: function() {
