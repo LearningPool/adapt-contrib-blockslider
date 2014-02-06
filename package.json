@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/adaptlearning/adapt-contrib-blockslider.git"
+    "url": "git://github.com/LearningPool/adapt-contrib-blockslider.git"
   },
-  "author": "AdaptLearning",
+  "author": "Kevin Corry <kevinc@learningpool.com>",
   "license": "GPL v3",
   "bugs": {
-    "url": "https://github.com/adaptlearning/adapt-contrib-blockslider/issues"
+    "url": "https://github.com/LearningPool/adapt-contrib-blockslider/issues"
   },
   "devDependencies": {
     "karma": "~0.9",

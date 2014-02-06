@@ -1,7 +1,7 @@
 adapt-contrib-blockslider
 =========================
 
-Contributed block slider extension for the Adapt Learning framework
+A contributed block slider extension for the Adapt Learning framework
 
 Installation
 ------------
@@ -21,10 +21,10 @@ For example JSON format, see [example.json](https://github.com/LearningPool/adap
 
 Settings overview
 -----------------
-- `_arrows`- contains settings for the arrow navigation controls:
- - `_isActive`- set to true/false to display/hide arrow navigation controls.
-- `_tabs`- contains settings for tab navigation controls:
- - `_isActive`- set to true or false to display/hide tabbed navigation.
- - `_useBlockTitle`- set to true to display the block title text within tabs. Set to false to display an icon for each tab.
-- `_initial`- which block to show on initial load. For example, a value of 2 will show the 2nd block.
-- `_height`- fix the height of the blockslider to this value. For example, a value of 600 will set the blockslider to 600px high. Defaults to 'auto' if not specified or non-numeric.
+- `_arrows` contains settings for the arrow navigation controls:
+ - `_isActive` [boolean]: Set to true/false to display/hide arrow navigation controls.
+- `_tabs` contains settings for tab navigation controls:
+ - `_isActive` [boolean]: Set to true or false to display/hide tabbed navigation.
+ - `_useBlockTitle` [boolean]: Set to true to display the block title text within tabs. Set to false to display an icon for each tab.
+- `_initial` [integer]: Which block to show on initial load. For example, a value of 2 will show the 2nd block.
+- `_height` [numeric]: Fix the height of the blockslider to this value. For example, a value of 600 will set the blockslider to 600px high. Defaults to 'auto' if not specified or non-numeric.

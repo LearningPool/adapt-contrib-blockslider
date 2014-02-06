@@ -1,6 +1,6 @@
 /*
 * adapt-contrib-blockslider
-* License - http://github.com/adaptlearning/adapt_framework/LICENSE
+* License - http://github.com/LearningPool/adapt-contrib-blockslider/LICENSE
 * Maintainers - Kevin Corry <kevinc@learningpool.com>
 */
 define(function(require) {

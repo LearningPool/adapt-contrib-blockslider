@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-blockslider",
   "authors": [
-    "Daryl Hedley <darylhedley@hotmail.com>"
+    "Kevin Corry <kevinc@learningpool.com>"
   ],
-  "description": "Display blocks in a slider",
+  "description": "Displays blocks in a slider",
   "main": "/js/adapt-contrib-blockslider.js",
   "keywords": [
     "adapt-plugin",
