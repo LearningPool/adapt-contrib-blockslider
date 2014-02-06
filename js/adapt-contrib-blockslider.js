@@ -172,7 +172,7 @@ define(function(require) {
       setBlockHeight: function() {
         // If the user has specified a fixed hieght for slider, use that,
         // otherwise css will dictate that it's auto
-        if (this.model.get('_blockSlider')._height) {
+        if (_.isNumber(parseFloat(this.model.get('_blockSlider')._height))) {
           this.$('.blockslider-container').height(this.model.get('_blockSlider')._height);
         }
       },
