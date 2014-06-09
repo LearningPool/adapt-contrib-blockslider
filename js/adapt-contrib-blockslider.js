@@ -199,6 +199,12 @@ define(function(require) {
     new BlockSliderView({model: blockSliderArticle});
   }
 
+  Adapt.on('articleView:preRender', function(article) {
+    if (article.model.get('_blockSlider') && !article.model.get('body')) {
+      article.model.set('body', '&nbsp;');
+    }
+  });
+
   Adapt.on('articleView:postRender', function(article) {
     if (article.model.get('_blockSlider')) {
       setupBlockSliderView(article.model);
