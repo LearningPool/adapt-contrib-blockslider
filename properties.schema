@@ -2,14 +2,14 @@
   "type":"object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
-  "properties":{
+  "properties": {
     "_blockSlider": {
       "type":"object",
       "required":false,
-      "properties":{
+      "properties": {
         "_arrows": {
           "type":"object",
-          "properties":{
+          "properties": {
             "_isEnabled": {
               "type":"boolean",
               "required":true
@@ -18,21 +18,21 @@
         },
         "_tabs": {
           "type":"object",
-          "properties":{
+          "properties": {
             "_isActive": {
               "type":"boolean",
               "required":true
             },
-            "_useBlockTitle":{
+            "_useBlockTitle": {
               "type":"boolean",
               "required":true
             }
           }
         },
-       "_initial":{
+       "_initial": {
         "type":"integer"
         },
-        "_height":{
+        "_height": {
         "type":"integer"
         }  
       }
