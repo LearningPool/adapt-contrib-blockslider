@@ -1,0 +1,42 @@
+{
+  "type":"object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://jsonschema.net",
+  "properties": {
+    "_blockSlider": {
+      "type":"object",
+      "required":false,
+      "properties": {
+        "_arrows": {
+          "type":"object",
+          "properties": {
+            "_isEnabled": {
+              "type":"boolean",
+              "required":true
+            }
+          }
+        },
+        "_tabs": {
+          "type":"object",
+          "properties": {
+            "_isActive": {
+              "type":"boolean",
+              "required":true
+            },
+            "_useBlockTitle": {
+              "type":"boolean",
+              "required":true
+            }
+          }
+        },
+       "_initial": {
+        "type":"integer"
+        },
+        "_height": {
+        "type":"integer"
+        }  
+      }
+    }
+  }
+}
+
