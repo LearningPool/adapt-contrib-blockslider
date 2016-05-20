@@ -1,42 +1,125 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
+  "required": false,
   "properties": {
-    "_blockSlider": {
-      "type":"object",
-      "required":false,
+    "pluginLocations": {
+      "type": "object",
+      "required": true,
       "properties": {
-        "_arrows": {
-          "type":"object",
+        "config": {
+          "type": "object"
+        },
+        "course": {
+          "type": "object",
           "properties": {
-            "_isEnabled": {
-              "type":"boolean",
-              "required":true
+            "_blockSlider": {
+              "type": "object",
+              "required": false,
+              "legend": "BlockSlider",
+              "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Is enabled",
+                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "validators": [],
+                  "help": "If set to 'false', BlockSlider will be disabled on all articles."
+                }
+              }
             }
           }
         },
-        "_tabs": {
-          "type":"object",
+        "contentobject": {
+          "type": "object"
+        },
+        "article": {
+          "type": "object",
           "properties": {
-            "_isActive": {
-              "type":"boolean",
-              "required":true
-            },
-            "_useBlockTitle": {
-              "type":"boolean",
-              "required":true
+            "_blockSlider": {
+              "type":"object",
+              "required":false,
+              "legend": "BlockSlider",
+              "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Is enabled",
+                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "validators": [],
+                  "help": "If set to 'true', then all blocks within this article would have slide effect."
+                },
+                "_arrows": {
+                  "type":"object",
+                  "legend": "Arrows",
+                  "properties": {
+                    "_isActive": {
+                      "type": "boolean",
+                      "required": false,
+                      "default": true,
+                      "title": "Is active",
+                      "inputType": {"type": "Boolean", "options": [true, false]},
+                      "validators": [],
+                      "help": ""
+                    }
+                  }
+                },
+                "_tabs": {
+                  "type":"object",
+                  "legend": "Tabs",
+                  "properties": {
+                    "_isActive": {
+                      "type": "boolean",
+                      "required": false,
+                      "default": true,
+                      "title": "Is active",
+                      "inputType": {"type": "Boolean", "options": [true, false]},
+                      "validators": [],
+                      "help": ""
+                    },
+                    "_useBlockTitle": {
+                      "type": "boolean",
+                      "required": false,
+                      "default": false,
+                      "title": "Use block title",
+                      "inputType": {"type": "Boolean", "options": [true, false]},
+                      "validators": [],
+                      "help": "Should use block titles as tab?"
+                    }
+                  }
+                },
+               "_initial": {
+                  "type": "number",
+                  "required": true,
+                  "title": "Initial",
+                  "inputType": "Number",
+                  "default": 1,
+                  "validators": ["number"],
+                  "help": ""
+                },
+                "_height": {
+                  "type": "string",
+                  "required": true,
+                  "default": "auto",
+                  "title": "Height",
+                  "inputType": "Text",
+                  "validators": ["required"],
+                  "help": "Blockslider container's height. We can also specify 'auto'."
+                }
+              }
             }
           }
         },
-       "_initial": {
-        "type":"integer"
+        "block": {
+          "type": "object"
         },
-        "_height": {
-        "type":"integer"
-        }  
+        "component": {
+          "type": "object"
+        }
       }
     }
   }
 }
-
