@@ -63,7 +63,7 @@
                       "title": "Is active",
                       "inputType": {"type": "Boolean", "options": [true, false]},
                       "validators": [],
-                      "help": ""
+                      "help": "Set to true/false to display/hide arrow navigation controls."
                     }
                   }
                 },
@@ -78,7 +78,7 @@
                       "title": "Is active",
                       "inputType": {"type": "Boolean", "options": [true, false]},
                       "validators": [],
-                      "help": ""
+                      "help": "Set to true or false to display/hide tabbed navigation."
                     },
                     "_useBlockTitle": {
                       "type": "boolean",
@@ -87,7 +87,7 @@
                       "title": "Use block title",
                       "inputType": {"type": "Boolean", "options": [true, false]},
                       "validators": [],
-                      "help": "Should use block titles as tab?"
+                      "help": "Set to true to display the block title text within tabs. Set to false to display an icon for each tab."
                     }
                   }
                 },
@@ -98,7 +98,7 @@
                   "inputType": "Number",
                   "default": 1,
                   "validators": ["number"],
-                  "help": ""
+                  "help": "Which block to show on initial load. For example, a value of 2 will show the 2nd block."
                 },
                 "_height": {
                   "type": "string",
@@ -107,7 +107,7 @@
                   "title": "Height",
                   "inputType": "Text",
                   "validators": ["required"],
-                  "help": "Blockslider container's height. We can also specify 'auto'."
+                  "help": "Fix the height of the blockslider to this value. For example, a value of 600 will set the blockslider to 600px high. Defaults to 'auto' if not specified."
                 }
               }
             }
