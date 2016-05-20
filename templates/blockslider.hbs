@@ -3,21 +3,21 @@
     {{#if _blockSlider._tabs._isActive}}
         {{#each _blocks}}
             {{#if ../_blockSlider._tabs._useBlockTitle}}
-                <a href="#" class="blockslider-tab blockslider-text-tab blockslider-tab-{{attributes._id}} index-{{@index}}">
+                <button class="base blockslider-tab blockslider-text-tab blockslider-tab-{{attributes._id}} index-{{@index}}">
                     {{attributes.title}}
-                </a>
+                </button>
             {{else}}
-                <a href="#" class="blockslider-tab blockslider-progress blockslider-tab-{{attributes._id}} index-{{@index}}"></a>
+                <button class="base blockslider-tab blockslider-progress blockslider-tab-{{attributes._id}} index-{{@index}}"></button>
             {{/if}}
         {{/each}}
     {{/if}}
 
     {{#if _blockSlider._arrows._isActive}}
-        <a href="#" class="blockslider-controls blockslider-control-left blockslider-hidden">
+        <button class="base blockslider-controls blockslider-control-left blockslider-hidden">
             <div class="icon icon-controls-left"></div>
-        </a>
-        <a href="#" class="blockslider-controls blockslider-control-right blockslider-hidden">
+        </button>
+        <button class="base blockslider-controls blockslider-control-right blockslider-hidden">
             <div class="icon icon-controls-right"></div>
-        </a>
+        </button>
     {{/if}}
 </div>
