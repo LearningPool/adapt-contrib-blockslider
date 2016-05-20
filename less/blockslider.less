@@ -33,7 +33,7 @@
     &.active {
       background-color: @item-selected-color;
       color: @item-text-selected-color;
-      &:hover {
+      .no-touch &:hover {
         background-color: @item-selected-color;
         color: @item-text-selected-color;
       }
@@ -47,12 +47,12 @@
     border: @item-border;
     border-radius: 50%;
     margin: 1px;
-    &:hover {
+    .no-touch &:hover {
       border-color: @item-border-color-hover;
     }
     &.active {
       background-color: @primary-color;
-      &:hover {
+      .no-touch &:hover {
         border-color: @item-border-color;
         background-color: @primary-color;
       }
