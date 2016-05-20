@@ -1,3 +1,16 @@
+// To go on a course
+{
+    "_id": "course",
+    "_type": "course",
+    "title": "",
+    "displayTitle": "",
+    "body": "",
+    "_blockSlider": {
+        "_isEnabled": true
+    }
+}
+
+// To be placed on a article
 {
     "_id":"a-25",
     "_parentId":"co-15",
@@ -6,6 +19,7 @@
     "title":"An article with a blockslider",
     "body":"Some components have more advanced features.",
     "_blockSlider":{
+        "_isEnabled": true,
         "_arrows": {
             "_isActive": true
         },
