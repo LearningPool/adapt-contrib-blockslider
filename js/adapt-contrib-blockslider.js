@@ -3,9 +3,9 @@
 * License - http://github.com/LearningPool/adapt-contrib-blockslider/LICENSE
 * Maintainers - Kevin Corry <kevinc@learningpool.com>
 */
-define(function(require) {
-
-  var Adapt = require('coreJS/adapt');
+define([
+  'coreJS/adapt'
+], function(Adapt) {
 
   function setupBlockSliderView (blockSliderArticle) {
 
@@ -127,10 +127,10 @@ define(function(require) {
 
       navigateClick: function (event) {
         event.preventDefault();
-        
+
         var stage = this.model.get('_stage');
         var movementSize = this.$('.blockslider-container').width();
-        
+
         if (this.$(event.currentTarget).hasClass('blockslider-control-right')) {
           this.navigateToIndex(++stage, movementSize);
         }
@@ -157,10 +157,10 @@ define(function(require) {
 
       setStage: function(stage) {
         this.model.set('_stage', stage);
-        
+
         this.$('.blockslider-tab').removeClass('active');
         this.$('.blockslider-tab').eq(stage).addClass('active');
-        
+
         // Set the block to visible when we navigate to it
         if (!this.model.get('_blocks')[stage].get('_isVisible')) {
           this.model.get('_blocks')[stage].set('_isVisible', true);
@@ -199,16 +199,34 @@ define(function(require) {
     new BlockSliderView({model: blockSliderArticle});
   }
 
-  Adapt.on('articleView:preRender', function(article) {
-    if (article.model.get('_blockSlider') && !article.model.get('body')) {
+  function onArticleViewPreRender(article) {
+    if (!article.model.get('_blockSlider') || !article.model.get('_blockSlider')._isEnabled) {
+      return;
+    }
+
+    if (!article.model.get('body')) {
       article.model.set('body', '&nbsp;');
     }
-  });
+  }
 
-  Adapt.on('articleView:postRender', function(article) {
-    if (article.model.get('_blockSlider')) {
-      setupBlockSliderView(article.model);
+  function onArticleViewPostRender(article) {
+    if (!article.model.get('_blockSlider') || !article.model.get('_blockSlider')._isEnabled) {
+      return;
     }
-  });
+
+    setupBlockSliderView(article.model);
+  }
+
+  function onDataReady() {
+    // do not proceed until blockslider enabled on course.json
+    if (!Adapt.course.get('_blockSlider') || !Adapt.course.get('_blockSlider')._isEnabled) {
+      return;
+    }
+
+    Adapt.on('articleView:preRender', onArticleViewPreRender);
+    Adapt.on('articleView:postRender', onArticleViewPostRender);
+  }
+
+  Adapt.once('app:dataReady', onDataReady);
 
 });

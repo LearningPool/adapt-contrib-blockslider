@@ -21,32 +21,41 @@
   }
 
   .blockslider-text-tab {
-    outline: none;
-    text-decoration: none;
     padding: @item-padding;
     color: @item-text-color;
     background-color: @item-color;
     margin-top:8px;
     margin-right:5px;
+    .no-touch &:hover {
+      text-color: @item-text-color-hover;
+      background-color: @item-color-hover;
+    }
     &.active {
       background-color: @item-selected-color;
       color: @item-text-selected-color;
+      .no-touch &:hover {
+        background-color: @item-selected-color;
+        color: @item-text-selected-color;
+      }
     }
   }
 
-  
   .blockslider-progress {
-    outline: none;
-    text-decoration: none;
-    width: (@icon-size/2);
-    height: (@icon-size/2);
     display: inline-block;
+    padding: @item-padding/2;
     background-color: @background-color;
     border: @item-border;
     border-radius: 50%;
-    margin: 1px;        
+    margin: 1px;
+    .no-touch &:hover {
+      border-color: @item-border-color-hover;
+    }
     &.active {
+      background-color: @primary-color;
+      .no-touch &:hover {
+        border-color: @item-border-color;
         background-color: @primary-color;
+      }
     }
   }
 
@@ -59,11 +68,16 @@
     margin-top: -(@icon-size);
     z-index: 10;
     text-decoration: none;
-    background-color:@item-color;
-    
+    background-color: @item-color;
+    .no-touch &:hover {
+      background-color: @item-color-hover;
+      .icon {
+        color: @item-text-color-hover;
+      }
+    }
     .icon {
       margin: (@icon-size/2);
-      color:@item-text-color;
+      color: @item-text-color;
     }
   }
 
@@ -80,28 +94,4 @@
     visibility: hidden;
   }
 
-}
-
-.no-touch {
-  .blockslider-controls {
-    &:hover {
-      background-color:@item-hover-color;
-      .icon {
-        color:@item-text-hover-color;
-      }
-    }
-  }
-  .blockslider-text-tab {
-    &:hover {
-      text-color:@item-text-hover-color;
-      background-color:@item-hover-color;
-    }
-  }
-  .blockslider-icon-tab {
-    &:hover {
-      .icon {
-        color:@secondary-color;
-      }
-    }
-  }
 }

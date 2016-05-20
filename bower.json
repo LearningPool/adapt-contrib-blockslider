@@ -1,15 +1,21 @@
 {
   "name": "adapt-contrib-blockslider",
-  "version": "0.0.1",
-  "homepage": "https://github.com/adaptlearning/adapt-contrib-blockslider",
+  "version": "2.0.0",
+  "framework": "^2.0.0",
+  "homepage": "https://github.com/LearningPool/adapt-contrib-blockslider",
+  "issues": "https://github.com/LearningPool/adapt-contrib-blockslider/issues",
+  "repository": "git@github.com/LearningPool/adapt-contrib-blockslider.git",
   "authors": [
     "Kevin Corry <kevinc@learningpool.com>"
   ],
   "description": "Displays blocks in a slider",
   "main": "/js/adapt-contrib-blockslider.js",
+  "displayName" : "BlockSlider",
+  "extension" : "blockslider",
   "keywords": [
     "adapt-plugin",
     "adapt-extension"
   ],
-  "license": "GPLv3"
+  "license": "GPLv3",
+  "targetAttribute": "_blockSlider"
 }
