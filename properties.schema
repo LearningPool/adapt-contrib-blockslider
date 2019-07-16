@@ -108,7 +108,16 @@
                   "inputType": "Text",
                   "validators": ["required"],
                   "help": "Fix the height of the blockslider to this value. For example, a value of 600 will set the blockslider to 600px high. Defaults to 'auto' if not specified."
-                }
+                },
+								"_noAnimate": {
+									"type": "boolean",
+									"required": false,
+									"default": false,
+									"title": "No animation",
+									"inputType": {"type": "Boolean", "options": [true, false]},
+									"validators": [],
+									"help": "Set to true to remove the animated sliding effect."
+								}
               }
             }
           }
