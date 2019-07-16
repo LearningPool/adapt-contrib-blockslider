@@ -150,7 +150,11 @@ define([
 
       navigateToIndex: function(stage, movementSize) {
         if (stage < this.model.get('_blockCount') && stage >= 0) {
-          this.$('.blockslider').stop().animate({'margin-left': - (movementSize * stage)});
+        	if (this.model.get('_blockSlider')._noAnimate === true) {
+          	this.$('.blockslider').stop().css({'margin-left': - (movementSize * stage)});
+          } else {
+          	this.$('.blockslider').stop().animate({'margin-left': - (movementSize * stage)});
+          }
           this.setStage(stage);
         }
       },
