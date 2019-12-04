@@ -7,7 +7,7 @@ define([
   'coreJS/adapt'
 ], function(Adapt) {
 
-  function setupBlockSliderView (blockSliderArticle) {
+  function setupBlockSliderView(blockSliderArticle) {
 
     var BlockSliderView = Backbone.View.extend({
 
@@ -16,8 +16,8 @@ define([
       el: '.' + blockSliderArticle.get('_id'),
 
       events: {
-        'click .blockslider-controls' : 'navigateClick',
-        'click .blockslider-tab' : 'navigateTab'
+        'click .blockslider-controls': 'navigateClick',
+        'click .blockslider-tab': 'navigateTab'
       },
 
       initialize: function() {
@@ -45,13 +45,13 @@ define([
       },
 
       setInitialSlide: function() {
-        var initialSlide = this.model.get('_blockSlider')._initial ? this.model.get('_blockSlider')._initial-1 : 0;
+        var initialSlide = this.model.get('_blockSlider')._initial ? this.model.get('_blockSlider')._initial - 1 : 0;
         var movementSize = this.$('.blockslider-container').width();
-        this.$('.blockslider').css({'margin-left': - (movementSize * initialSlide)});
+        this.$('.blockslider').css({ 'margin-left': - (movementSize * initialSlide) });
         this.setStage(initialSlide);
       },
 
-      render: function () {
+      render: function() {
         // Add controls to the article
         var data = this.model.toJSON();
         var template = Handlebars.templates["blockslider"];
@@ -70,13 +70,13 @@ define([
       },
 
       wrapBlocks: function() {
-        this.$(".block").wrapAll( "<div class='blockslider' />");
+        this.$(".block").wrapAll("<div class='blockslider' />");
         this.$(".blockslider").wrapAll("<div class='blockslider-container' />");
         this.$('.blockslider-controls-container').removeClass('blockslider-hidden');
         this.model.set('_active', true);
       },
 
-      getAvailableBlocks: function () {
+      getAvailableBlocks: function() {
         return _.filter(this.model.getChildren().models, function(block) {
           return block.get('_isAvailable');
         });
@@ -125,7 +125,7 @@ define([
         this.$('.blockslider').css('margin-left', margin);
       },
 
-      navigateClick: function (event) {
+      navigateClick: function(event) {
         event.preventDefault();
 
         var stage = this.model.get('_stage');
@@ -139,7 +139,7 @@ define([
         }
       },
 
-      navigateTab: function (event) {
+      navigateTab: function(event) {
         event.preventDefault();
         this.$('.blockslider-tab').removeClass('active');
         this.$(event.currentTarget).addClass('active');
@@ -150,7 +150,7 @@ define([
 
       navigateToIndex: function(stage, movementSize) {
         if (stage < this.model.get('_blockCount') && stage >= 0) {
-          this.$('.blockslider').stop().animate({'margin-left': - (movementSize * stage)});
+          this.$('.blockslider').stop().animate({ 'margin-left': - (movementSize * stage) });
           this.setStage(stage);
         }
       },
@@ -196,7 +196,7 @@ define([
 
     });
 
-    new BlockSliderView({model: blockSliderArticle});
+    new BlockSliderView({ model: blockSliderArticle });
   }
 
   function onArticleViewPreRender(article) {
