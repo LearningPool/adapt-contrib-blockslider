@@ -1,38 +1,40 @@
 .blockslider-article {
-
   .blockslider-container {
     margin: 0 auto;
     overflow: hidden;
 
     .blockslider {
       height: auto;
+
       .block {
+        float: left;
         height: auto;
-        float:left;
       }
     }
   }
 
   .blockslider-controls-container {
     height: auto;
-    text-align: center;
+    margin-top: 5px;
     position: relative;
-    margin-top:5px;
+    text-align: center;
   }
 
   .blockslider-text-tab {
-    padding: @item-padding;
-    color: @item-text-color;
     background-color: @item-color;
-    margin-top:8px;
-    margin-right:5px;
+    color: @item-text-color;
+    margin-right: 5px;
+    margin-top: 8px;
+    padding: @item-padding;
+
     .no-touch &:hover {
-      text-color: @item-text-color-hover;
       background-color: @item-color-hover;
+      color: @item-text-color-hover;
     }
     &.active {
       background-color: @item-selected-color;
       color: @item-text-selected-color;
+
       .no-touch &:hover {
         background-color: @item-selected-color;
         color: @item-text-selected-color;
@@ -41,43 +43,49 @@
   }
 
   .blockslider-progress {
-    display: inline-block;
-    padding: @item-padding/2;
     background-color: @background-color;
     border: @item-border;
     border-radius: 50%;
+    display: inline-block;
     margin: 1px;
+    padding: @item-padding / 2;
+
     .no-touch &:hover {
       border-color: @item-border-color-hover;
     }
+
     &.active {
       background-color: @primary-color;
+
       .no-touch &:hover {
-        border-color: @item-border-color;
         background-color: @primary-color;
+        border-color: @item-border-color;
       }
     }
   }
 
   .blockslider-controls {
-    display: block;
-    width: (@icon-size*2);
-    height: (@icon-size*2);
-    position: absolute;
-    top: 50%;
-    margin-top: -(@icon-size);
-    z-index: 10;
-    text-decoration: none;
     background-color: @item-color;
+    display: block;
+    height: (@icon-size*2);
+    margin-top: -(@icon-size);
+    position: absolute;
+    text-decoration: none;
+    top: 50%;
+    width: (@icon-size*2);
+    z-index: 10;
+
     .no-touch &:hover {
       background-color: @item-color-hover;
+
       .icon {
         color: @item-text-color-hover;
       }
     }
+
     .icon {
-      margin: (@icon-size/2);
       color: @item-text-color;
+      margin: (@icon-size / 2);
     }
   }
 
@@ -93,5 +101,4 @@
     display: none;
     visibility: hidden;
   }
-
 }
